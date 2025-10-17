@@ -1,5 +1,6 @@
 // server.cpp
 // compile: g++ server.cpp -o server.exe -lws2_32
+// note: only on windows
 
 #define _WIN32_WINNT 0x0600
 #define WIN32_LEAN_AND_MEAN
@@ -180,6 +181,7 @@ void handleClient(int id) {
 int main() {
     WSADATA wsaData;
     WSAStartup(MAKEWORD(2, 2), &wsaData);
+    // sock stream use TCP
     SOCKET listenSock = socket(AF_INET, SOCK_STREAM, 0);
 
     sockaddr_in addr{};

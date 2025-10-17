@@ -1,5 +1,6 @@
 // client.cpp
 // compile: g++ client.cpp -o client.exe -lws2_32
+// note: only on windows
 
 #define _WIN32_WINNT 0x0600
 #define WIN32_LEAN_AND_MEAN
@@ -13,7 +14,7 @@
 #pragma comment(lib, "ws2_32.lib")
 
 const int HEADER = 64;
-const char* HOST = "127.0.0.1";
+const char* HOST = "0.0.0.0";
 const int PORT = 8765;
 SOCKET clientSocket;
 
@@ -43,6 +44,7 @@ int main() {
     WSADATA wsaData;
     WSAStartup(MAKEWORD(2, 2), &wsaData);
 
+    // sock stream use TCP
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr_in serverAddr{};
     serverAddr.sin_family = AF_INET;
